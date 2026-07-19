@@ -244,6 +244,101 @@ a {
   font-size: 0.9rem;
 }
 
+.cook-log {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.cook-log h4 {
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.cook-log-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.cook-log-entry {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  padding: 0.6rem 0.8rem;
+}
+
+.cook-log-entry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cook-log-entry p {
+  margin: 0.4rem 0 0;
+  font-size: 0.95rem;
+}
+
+.cook-log-delete-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-decoration: underline;
+}
+
+.cook-log-photo-preview {
+  display: block;
+  max-width: 100%;
+  max-height: 220px;
+  margin-top: 0.5rem;
+  border-radius: 0.4rem;
+}
+
+.cook-log-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cook-log-form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cook-log-form input,
+.cook-log-form textarea {
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.cook-log-add-btn {
+  align-self: flex-start;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.4rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cook-log-status {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
 .category {
   color: var(--accent);
   font-size: 0.85rem;

@@ -10,8 +10,16 @@ import {
   doc,
   getDoc,
   setDoc,
+  collection,
+  addDoc,
+  deleteDoc,
+  getDocs,
+  query,
+  orderBy,
+  serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 import { fetchRecipes, escapeHtml } from "./data.js";
+import { compressImageToDataUrl } from "./image-utils.js";
 
 const ADMIN_UID = "G4LdXD4fUAOjTlRoV4agWMjPjVA3";
 
@@ -51,6 +59,10 @@ loginForm.addEventListener("submit", async (e) => {
 
 signOutBtn.addEventListener("click", () => signOut(auth));
 
+function cardEl(recipeId) {
+  return document.querySelector(`.tracking-card[data-id="${CSS.escape(recipeId)}"]`);
+}
+
 async function renderTrackingList() {
   trackingList.innerHTML = "Loading recipes…";
   let recipes;
@@ -66,6 +78,8 @@ async function renderTrackingList() {
     trackingList.innerHTML = `<p class="empty">No recipes published yet.</p>`;
     return;
   }
+
+  const today = new Date().toISOString().slice(0, 10);
 
   trackingList.innerHTML = recipes
     .map(
@@ -93,6 +107,27 @@ async function renderTrackingList() {
       </label>
       <button type="button" class="save-btn">Save</button>
       <span class="save-status"></span>
+
+      <div class="cook-log">
+        <h4>Cook log</h4>
+        <div class="cook-log-entries">Loading…</div>
+        <form class="cook-log-form">
+          <div class="field">
+            <label>Date</label>
+            <input type="date" class="cook-log-date" value="${today}" required>
+          </div>
+          <div class="field">
+            <label>Note</label>
+            <textarea class="cook-log-note" rows="2" placeholder="What changed, what worked…"></textarea>
+          </div>
+          <div class="field">
+            <label>Photo (optional)</label>
+            <input type="file" class="cook-log-photo" accept="image/*">
+          </div>
+          <button type="submit" class="cook-log-add-btn">Add entry</button>
+          <span class="cook-log-status"></span>
+        </form>
+      </div>
     </div>`
     )
     .join("");
@@ -100,11 +135,13 @@ async function renderTrackingList() {
   for (const recipe of recipes) {
     loadTrackingDoc(recipe.id);
     wireSaveButton(recipe.id);
+    loadCookLog(recipe.id);
+    wireCookLogForm(recipe.id);
   }
 }
 
 async function loadTrackingDoc(recipeId) {
-  const card = document.querySelector(`.tracking-card[data-id="${CSS.escape(recipeId)}"]`);
+  const card = cardEl(recipeId);
   if (!card) return;
   try {
     const snap = await getDoc(doc(db, "tracking", recipeId));
@@ -120,7 +157,7 @@ async function loadTrackingDoc(recipeId) {
 }
 
 function wireSaveButton(recipeId) {
-  const card = document.querySelector(`.tracking-card[data-id="${CSS.escape(recipeId)}"]`);
+  const card = cardEl(recipeId);
   if (!card) return;
   const btn = card.querySelector(".save-btn");
   const status = card.querySelector(".save-status");
@@ -143,6 +180,101 @@ function wireSaveButton(recipeId) {
       status.textContent = "Save failed";
     } finally {
       btn.disabled = false;
+    }
+  });
+}
+
+function cookLogCollection(recipeId) {
+  return collection(db, "tracking", recipeId, "cookLog");
+}
+
+async function loadCookLog(recipeId) {
+  const card = cardEl(recipeId);
+  if (!card) return;
+  const container = card.querySelector(".cook-log-entries");
+  try {
+    const snap = await getDocs(query(cookLogCollection(recipeId), orderBy("date", "desc")));
+    if (snap.empty) {
+      container.innerHTML = `<p class="empty">No entries yet.</p>`;
+      return;
+    }
+    container.innerHTML = snap.docs
+      .map((d) => {
+        const entry = d.data();
+        return `
+        <div class="cook-log-entry" data-entry-id="${escapeHtml(d.id)}">
+          <div class="cook-log-entry-header">
+            <strong>${escapeHtml(entry.date)}</strong>
+            <button type="button" class="cook-log-delete-btn" data-entry-id="${escapeHtml(d.id)}">Delete</button>
+          </div>
+          ${entry.note ? `<p>${escapeHtml(entry.note)}</p>` : ""}
+          ${entry.imageData ? `<img class="cook-log-photo-preview" src="${entry.imageData}" alt="Cook log photo from ${escapeHtml(entry.date)}">` : ""}
+        </div>`;
+      })
+      .join("");
+
+    container.querySelectorAll(".cook-log-delete-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        btn.disabled = true;
+        try {
+          await deleteDoc(doc(db, "tracking", recipeId, "cookLog", btn.dataset.entryId));
+          loadCookLog(recipeId);
+        } catch (err) {
+          console.error(err);
+          btn.disabled = false;
+        }
+      });
+    });
+  } catch (err) {
+    console.error("Couldn't load cook log for", recipeId, err);
+    container.innerHTML = `<p class="empty">Couldn't load cook log.</p>`;
+  }
+}
+
+function wireCookLogForm(recipeId) {
+  const card = cardEl(recipeId);
+  if (!card) return;
+  const form = card.querySelector(".cook-log-form");
+  const status = card.querySelector(".cook-log-status");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const dateInput = form.querySelector(".cook-log-date");
+    const noteInput = form.querySelector(".cook-log-note");
+    const photoInput = form.querySelector(".cook-log-photo");
+    const addBtn = form.querySelector(".cook-log-add-btn");
+
+    addBtn.disabled = true;
+    status.textContent = "Saving…";
+
+    try {
+      let imageData = null;
+      const file = photoInput.files[0];
+      if (file) {
+        status.textContent = "Compressing photo…";
+        imageData = await compressImageToDataUrl(file);
+        if (!imageData) {
+          status.textContent = "Photo too large even after compression — saved without it.";
+        }
+      }
+
+      await addDoc(cookLogCollection(recipeId), {
+        date: dateInput.value,
+        note: noteInput.value,
+        imageData: imageData || null,
+        createdAt: serverTimestamp(),
+      });
+
+      form.reset();
+      dateInput.value = new Date().toISOString().slice(0, 10);
+      if (!status.textContent.startsWith("Photo too large")) status.textContent = "Added";
+      setTimeout(() => (status.textContent = ""), 2500);
+      loadCookLog(recipeId);
+    } catch (err) {
+      console.error(err);
+      status.textContent = "Couldn't save entry";
+    } finally {
+      addBtn.disabled = false;
     }
   });
 }
