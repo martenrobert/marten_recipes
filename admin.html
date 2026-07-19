@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin — Marten Family Recipes</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main>
+    <p><a href="index.html">&larr; All recipes</a></p>
+    <h1>Admin</h1>
+
+    <form id="login-form">
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" required>
+      </div>
+      <button type="submit">Sign in</button>
+      <p id="login-error" class="error"></p>
+    </form>
+
+    <div id="admin-panel" hidden>
+      <p><button id="sign-out">Sign out</button></p>
+      <div id="tracking-list" class="loading">Loading recipes…</div>
+    </div>
+  </main>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
