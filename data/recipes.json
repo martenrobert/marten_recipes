@@ -73,5 +73,198 @@
         "amount": "1/2 teaspoon"
       }
     ]
+  },
+  {
+    "id": "braised-lamb-shoulder",
+    "title": "Braised Sweet Spiced Lamb Shoulder",
+    "category": "Main",
+    "ingredients": [
+      {
+        "item": "boneless lamb necks (about 4 pieces), or lamb shoulder",
+        "amount": "2 lbs"
+      },
+      {
+        "item": "garlic cloves, peeled and roughly chopped",
+        "amount": "6"
+      },
+      {
+        "item": "ginger, peeled and roughly chopped",
+        "amount": "50 g (1 3/4 oz)"
+      },
+      {
+        "item": "vine tomatoes, roughly chopped",
+        "amount": "3"
+      },
+      {
+        "item": "white onion, peeled and roughly chopped",
+        "amount": "1"
+      },
+      {
+        "item": "jalapeños, roughly chopped",
+        "amount": "2"
+      },
+      {
+        "item": "cilantro leaves and stalks, chopped, plus 5 g extra",
+        "amount": "20 g"
+      },
+      {
+        "item": "ground cumin",
+        "amount": "1 tablespoon"
+      },
+      {
+        "item": "ground cinnamon",
+        "amount": "1 tablespoon"
+      },
+      {
+        "item": "ground allspice",
+        "amount": "1 1/2 teaspoons"
+      },
+      {
+        "item": "Greek yogurt",
+        "amount": "150 g (2/3 cup)"
+      },
+      {
+        "item": "olive oil, for searing",
+        "amount": "as needed"
+      },
+      {
+        "item": "water",
+        "amount": "4 1/2 cups"
+      },
+      {
+        "item": "salt",
+        "amount": "to taste"
+      },
+      {
+        "item": "black pepper",
+        "amount": "to taste"
+      },
+      {
+        "item": "golden raisins",
+        "amount": "60 g"
+      },
+      {
+        "item": "barberries",
+        "amount": "20 g"
+      },
+      {
+        "item": "apple cider vinegar",
+        "amount": "2 1/2 tablespoons"
+      },
+      {
+        "item": "unsalted butter",
+        "amount": "30 g (2 1/4 tablespoons)"
+      },
+      {
+        "item": "blanched slivered almonds",
+        "amount": "80 g"
+      },
+      {
+        "item": "cilantro, roughly chopped (for garnish)",
+        "amount": "5 g"
+      },
+      {
+        "item": "parsley, roughly chopped (for garnish)",
+        "amount": "10 g"
+      },
+      {
+        "item": "saffron water",
+        "amount": "1/4 teaspoon"
+      },
+      {
+        "item": "unsalted butter",
+        "amount": "30 g"
+      },
+      {
+        "item": "whole cloves",
+        "amount": "5"
+      },
+      {
+        "item": "whole cinnamon sticks",
+        "amount": "3"
+      },
+      {
+        "item": "basmati rice, washed and soaked 30 min to overnight",
+        "amount": "400 g"
+      }
+    ]
+  },
+  {
+    "id": "celebration-rice",
+    "title": "Celebration Rice",
+    "category": "Side",
+    "ingredients": [
+      {
+        "item": "saffron water",
+        "amount": "1/4 teaspoon"
+      },
+      {
+        "item": "unsalted butter",
+        "amount": "30 g"
+      },
+      {
+        "item": "whole cloves",
+        "amount": "5"
+      },
+      {
+        "item": "whole cinnamon sticks",
+        "amount": "3"
+      },
+      {
+        "item": "basmati rice, washed and soaked 30 min to overnight",
+        "amount": "400 g"
+      },
+      {
+        "item": "salt",
+        "amount": "to taste"
+      }
+    ]
+  },
+  {
+    "id": "mommas-lasagna",
+    "title": "Momma Marten's Lasagna",
+    "category": "Main",
+    "ingredients": [
+      {
+        "item": "ribbed lasagna noodle strips",
+        "amount": "12"
+      },
+      {
+        "item": "hamburger",
+        "amount": "1 lb"
+      },
+      {
+        "item": "tomato sauce (regular)",
+        "amount": "2 (15 oz) cans"
+      },
+      {
+        "item": "tomato paste",
+        "amount": "1 (6 oz) can"
+      },
+      {
+        "item": "salt",
+        "amount": "1/2 teaspoon"
+      },
+      {
+        "item": "garlic powder",
+        "amount": "1/4 teaspoon"
+      },
+      {
+        "item": "creamed cottage cheese (small curd preferred)",
+        "amount": "1 (24 oz) carton"
+      },
+      {
+        "item": "grated Parmesan cheese",
+        "amount": "1/2 cup"
+      },
+      {
+        "item": "dried parsley flakes",
+        "amount": "4 teaspoons"
+      },
+      {
+        "item": "shredded mozzarella cheese",
+        "amount": "3 cups"
+      }
+    ]
   }
 ]
