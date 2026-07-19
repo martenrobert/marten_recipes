@@ -2,14 +2,20 @@
   color-scheme: light dark;
   --bg: #fdfbf7;
   --fg: #2b2620;
+  --muted: #7a7266;
   --accent: #b5502f;
+  --card-bg: #ffffff;
+  --border: #e8e0d4;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #1c1a17;
     --fg: #f0ece4;
+    --muted: #a89e8f;
     --accent: #e08a5e;
+    --card-bg: #262320;
+    --border: #3a352e;
   }
 }
 
@@ -22,15 +28,72 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: var(--bg);
   color: var(--fg);
+  line-height: 1.5;
 }
 
 main {
   max-width: 640px;
   margin: 0 auto;
-  padding: 4rem 1.5rem;
-  text-align: center;
+  padding: 2.5rem 1.5rem 4rem;
 }
 
 h1 {
   color: var(--accent);
+}
+
+a {
+  color: var(--accent);
+}
+
+.loading,
+.empty {
+  color: var(--muted);
+}
+
+.category h2 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.recipe-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.recipe-cards li {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+
+.recipe-cards a {
+  display: block;
+  padding: 0.9rem 1.1rem;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.category {
+  color: var(--accent);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.ingredients {
+  padding-left: 1.25rem;
+}
+
+.ingredients li {
+  margin-bottom: 0.35rem;
 }
