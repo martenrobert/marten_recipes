@@ -72,14 +72,91 @@ a {
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .recipe-cards a {
   display: block;
+  flex: 1;
   padding: 0.9rem 1.1rem;
   text-decoration: none;
   font-weight: 600;
   color: var(--fg);
+}
+
+.heart-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0.9rem 1.1rem;
+  font-family: inherit;
+}
+
+.heart-btn .heart-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.heart-btn.loved {
+  color: var(--accent);
+}
+
+.heart-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.heart-btn-large {
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+}
+
+.leaderboard-list {
+  list-style: none;
+  counter-reset: rank;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.leaderboard-list li {
+  counter-increment: rank;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.9rem 1.1rem;
+}
+
+.leaderboard-list li::before {
+  content: counter(rank) ".";
+  color: var(--muted);
+  margin-right: 0.6rem;
+  font-weight: 600;
+}
+
+.leaderboard-list a {
+  flex: 1;
+  color: var(--fg);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.leaderboard-list .heart-count {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 .category {
