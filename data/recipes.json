@@ -1,1 +1,77 @@
-[]
+[
+  {
+    "id": "bolognese",
+    "title": "Bolognese",
+    "category": "Main",
+    "ingredients": [
+      {
+        "item": "yellow onion, rough chopped",
+        "amount": "1"
+      },
+      {
+        "item": "carrot, rough chopped",
+        "amount": "1"
+      },
+      {
+        "item": "stalk celery, rough chopped",
+        "amount": "1"
+      },
+      {
+        "item": "neutral oil",
+        "amount": "1 tablespoon"
+      },
+      {
+        "item": "80/20 ground beef",
+        "amount": "1 pound"
+      },
+      {
+        "item": "garlic, minced",
+        "amount": "2 cloves"
+      },
+      {
+        "item": "dry white wine or dry vermouth",
+        "amount": "1/2 cup"
+      },
+      {
+        "item": "crushed tomatoes",
+        "amount": "1 (15 ounce) can"
+      },
+      {
+        "item": "tomato paste",
+        "amount": "3 tablespoons"
+      },
+      {
+        "item": "beef broth",
+        "amount": "2 cups"
+      },
+      {
+        "item": "balsamic vinegar",
+        "amount": "3 tablespoons"
+      },
+      {
+        "item": "bay leaf",
+        "amount": "1"
+      },
+      {
+        "item": "dried oregano",
+        "amount": "2 teaspoons"
+      },
+      {
+        "item": "red pepper flakes",
+        "amount": "1 teaspoon"
+      },
+      {
+        "item": "milk",
+        "amount": "1 1/2 cups"
+      },
+      {
+        "item": "kosher salt",
+        "amount": "1 1/2 teaspoons"
+      },
+      {
+        "item": "freshly ground black pepper",
+        "amount": "1/2 teaspoon"
+      }
+    ]
+  }
+]
